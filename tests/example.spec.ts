@@ -10,11 +10,8 @@ test.describe("home", () => {
     await page.goto(url);
   });
 
-  test("has title", async ({ page }) => {
-    // Expect a title "to contain" a substring.
-    await expect(page).toHaveTitle("My Mantine app");
-
-    const heading = page.getByRole("heading", { name: "Home" });
+  test("Hello world to show on the screen", async ({ page }) => {
+    const heading = page.getByRole("heading", { name: "Hello World" });
     await expect(heading).toBeVisible();
   });
 });
