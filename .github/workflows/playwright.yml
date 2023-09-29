@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: CI build and test
 on:
   pull_request:
     branches: [main, master]
@@ -35,6 +35,7 @@ jobs:
         run: pnpm build
   test:
     timeout-minutes: 60
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -75,6 +76,7 @@ jobs:
           retention-days: 30
   lint:
     timeout-minutes: 60
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
