@@ -13,8 +13,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-        env:
-          NODE_ENV: "production"
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         with:
@@ -39,6 +37,8 @@ jobs:
         run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
         run: pnpm exec playwright test
+        env:
+          NODE_ENV: production
       - uses: actions/upload-artifact@v3
         if: always()
         with:
