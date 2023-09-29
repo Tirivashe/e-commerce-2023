@@ -70,7 +70,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # You should set this in your repository secrets
-          # vercel-org-id: ${{ secrets.VERCEL_ORG_ID }} You should set this in your repository secrets
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }} # You should set this in your repository secrets
       - name: Run Playwright tests
         run: pnpm exec playwright test
