@@ -65,11 +65,9 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
       - name: Run the dev environment
-        run: pnpm dev
+        run: pnpm run dev
       - name: Run Playwright tests
         run: pnpm exec playwright test
-        env:
-          NODE_ENV: production
       - uses: actions/upload-artifact@v3
         if: always()
         with:
