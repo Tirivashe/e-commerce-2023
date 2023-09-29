@@ -64,18 +64,17 @@ jobs:
         run: pnpm install
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
+
       - name: Wait for Vercel preview
-        id: vercel
-        uses: amondnet/vercel-action@v20
+        uses: aaimio/vercel-preview-url-action@v2.2.0
+        id: vercel_preview_url
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # You should set this in your repository secrets
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }} # You should set this in your repository secrets
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run Playwright tests
         run: pnpm exec playwright test
         env:
-          APP_URL: ${{ steps.vercel.outputs.preview-url }}
+          APP_URL: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
       - uses: actions/upload-artifact@v3
         if: always()
         with:
