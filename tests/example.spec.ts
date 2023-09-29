@@ -1,8 +1,10 @@
 import { test, expect } from "@playwright/test";
 
+const url = process.env.APP_URL;
+
 test.describe("home", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:3000");
+    await page.goto(url ?? "");
   });
 
   test("has title", async ({ page }) => {
