@@ -1,13 +1,8 @@
 import { test, expect } from "@playwright/test";
 
-const url =
-  process.env.NODE_ENV === "production"
-    ? "https://shamhu-electronics-shop.vercel.app/"
-    : "http://localhost:3000";
-
 test.describe("home", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(url);
+    await page.goto("http://localhost:3000");
   });
 
   test("has title", async ({ page }) => {
