@@ -15,4 +15,8 @@ test.describe("home", () => {
   test("should have 'example' text", async ({ page }) => {
     await expect(page.getByText(/example/i)).toBeVisible();
   });
+
+  test("should have another text", async ({ page }) => {
+    await expect(page.getByText(/another/i)).toBeVisible();
+  });
 });
