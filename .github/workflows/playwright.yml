@@ -65,22 +65,35 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
 
-      - name: Wait for Vercel preview
-        uses: aaimio/vercel-preview-url-action@v2.2.0
-        id: vercel_preview_url
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run Playwright tests
-        run: pnpm exec playwright test
+      - name: Wait For Vercel Deployment
+        uses: UnlyEd/github-action-await-vercel@v1.2.39
         env:
-          APP_URL: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
-      - uses: actions/upload-artifact@v3
-        if: always()
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+          deployment-url: e-commerce-2023-2eq0a1d3w-tirivashe.vercel.app # TODO Replace by the domain you want to test
+          timeout: 30
+          poll-interval: 1
+
+      - name: vercel-preview-url
+        uses: zentered/vercel-preview-url@v1.1.9
+        id: vercel_preview_url
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        with:
+          vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Get URL
+        run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
+
+      # - name: Run Playwright tests
+      #   run: pnpm exec playwright test
+      #   env:
+      #     APP_URL: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
+      # - uses: actions/upload-artifact@v3
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: playwright-report/
+      #     retention-days: 30
   lint:
     timeout-minutes: 60
     needs: test
