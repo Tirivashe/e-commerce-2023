@@ -17,10 +17,14 @@ test.describe("home", () => {
   });
 
   test("should have another text", async ({ page }) => {
-    await expect(page.getByText(/another/i)).toBeVisible();
+    await expect(page.getByText("another", { exact: true })).toBeVisible();
   });
 
   test("should have another text of 'testing'", async ({ page }) => {
-    await expect(page.getByText(/testing/i)).toBeVisible();
+    await expect(page.getByText("testing", { exact: true })).toBeVisible();
+  });
+
+  test("should have another text of 'another testing'", async ({ page }) => {
+    await expect(page.getByText("another testing")).toBeVisible();
   });
 });
