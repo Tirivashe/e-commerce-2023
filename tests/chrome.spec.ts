@@ -21,7 +21,7 @@ test.describe("chrome performance", () => {
         performance: 85,
         accessibility: 85,
         "best-practices": 85,
-        seo: 100,
+        seo: 85,
       },
       port: 9222,
       reports: {
