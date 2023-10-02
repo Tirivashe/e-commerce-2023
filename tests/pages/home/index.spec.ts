@@ -1,10 +1,10 @@
 import { test, expect } from "@playwright/test";
 
-const url = process.env.APP_URL;
+const url = process.env.APP_URL || "http:localhost:3000";
 
 test.describe("home", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(url ?? "http:localhost:3000");
+    await page.goto(url);
   });
 
   test("Hello world to show on the screen", async ({ page }) => {

@@ -15,7 +15,9 @@
   "dependencies": {
     "@mantine/core": "7.1.0",
     "@mantine/hooks": "7.1.0",
+    "lighthouse": "^9.6.8",
     "next": "latest",
+    "playwright-lighthouse": "2.2.2",
     "react": "latest",
     "react-dom": "latest"
   },
