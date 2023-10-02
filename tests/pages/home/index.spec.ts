@@ -27,4 +27,8 @@ test.describe("home", () => {
   test("should have another text of 'another testing'", async ({ page }) => {
     await expect(page.getByText("another testing")).toBeVisible();
   });
+
+  test("should have 'test'", async ({ page }) => {
+    await expect(page.getByText("test", { exact: true })).toBeVisible();
+  });
 });
