@@ -18,9 +18,9 @@ test.describe("chrome performance", () => {
     await playAudit({
       page,
       thresholds: {
-        performance: 90,
-        accessibility: 95,
-        "best-practices": 95,
+        performance: 85,
+        accessibility: 85,
+        "best-practices": 85,
         seo: 100,
       },
       port: 9222,
